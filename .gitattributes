@@ -1,0 +1,11 @@
+# Normalize all text files to LF in the repo and working tree.
+# Matches Prettier's default endOfLine and the Linux-based Lovable side,
+# preventing "Delete ␍" lint noise on Windows checkouts.
+* text=auto eol=lf
+
+# Binary assets
+*.ico binary
+*.png binary
+*.jpg binary
+*.woff binary
+*.woff2 binary
