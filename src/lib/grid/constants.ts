@@ -1,11 +1,11 @@
 import type { ChartPoint, Vehicle } from "./types";
 
 export const initialVehicles: Vehicle[] = [
-  { id: "EV-07", battery: 18, target: 85, departure: "09:15", maxPower: 11 },
-  { id: "EV-03", battery: 42, target: 80, departure: "11:30", maxPower: 7 },
-  { id: "EV-11", battery: 76, target: 90, departure: "16:45", maxPower: 7 },
-  { id: "EV-04", battery: 63, target: 90, departure: "14:20", maxPower: 11 },
-  { id: "EV-09", battery: 31, target: 75, departure: "12:10", maxPower: 7 },
+  { id: "EV-07", battery: 18, target: 85, departure: "09:15", maxPower: 11, batteryPackKwh: 64 },
+  { id: "EV-03", battery: 42, target: 80, departure: "11:30", maxPower: 7, batteryPackKwh: 58 },
+  { id: "EV-11", battery: 76, target: 90, departure: "16:45", maxPower: 7, batteryPackKwh: 75 },
+  { id: "EV-04", battery: 63, target: 90, departure: "14:20", maxPower: 11, batteryPackKwh: 82 },
+  { id: "EV-09", battery: 31, target: 75, departure: "12:10", maxPower: 7, batteryPackKwh: 60 },
 ];
 
 export const chartSeed: ChartPoint[] = [
@@ -30,6 +30,7 @@ export const DERIVED_RANGES = {
   battery: { min: 1, max: 99 },
   target: { min: 1, max: 100 },
   maxPower: { min: 1, max: 22 },
+  batteryPackKwh: { min: 20, max: 200 },
 } as const;
 
 export function defaultVehicleForm(vehicleCount: number): Vehicle {
@@ -39,6 +40,7 @@ export function defaultVehicleForm(vehicleCount: number): Vehicle {
     target: 80,
     departure: "13:30",
     maxPower: 7,
+    batteryPackKwh: 60,
   };
 }
 

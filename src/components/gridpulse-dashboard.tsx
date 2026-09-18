@@ -7,7 +7,7 @@ import {
   Bolt,
   CarFront,
   CircleGauge,
-  Gauge,
+  CheckCircle2,
   Minus,
   RotateCcw,
   Settings2,
@@ -128,18 +128,19 @@ export function GridPulseDashboard() {
     return () => window.clearTimeout(timer);
   }, [synced, gridCapacity, buildingDemand, solarGeneration, vehicles]);
 
-  // Rolling telemetry window.
-  const allocations = useMemo(
+  // Rolling telemetry window. The allocator returns both the per-vehicle
+  // decisions and the cluster-level budget it decided under.
+  const { allocations, availableChargingCapacityKw, totalAllocatedKw, completedCount } = useMemo(
     () => allocate(vehicles, { gridCapacity, buildingDemand, solarGeneration }, nowMinutes),
     [vehicles, gridCapacity, buildingDemand, solarGeneration, nowMinutes],
   );
-  const evLoad = allocations.reduce((sum, vehicle) => sum + vehicle.power, 0);
+  const evLoad = totalAllocatedKw;
   const derived = useMemo(
     () => computeDerived({ gridCapacity, buildingDemand, solarGeneration }, evLoad),
     [gridCapacity, buildingDemand, solarGeneration, evLoad],
   );
   const isConstrained =
-    derived.utilization >= 90 || allocations.some((vehicle) => vehicle.power < vehicle.maxPower);
+    derived.utilization >= 90 || allocations.some((a) => a.power > 0 && a.power < a.maxPower);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -277,10 +278,9 @@ export function GridPulseDashboard() {
             unit="kW"
             icon={Activity}
           />
-          <Metric label="Grid capacity" value={gridCapacity} unit="kW" icon={Gauge} />
           <Metric
-            label="Grid headroom"
-            value={derived.headroom.toFixed(1)}
+            label="Charging budget"
+            value={availableChargingCapacityKw.toFixed(1)}
             unit="kW"
             icon={CircleGauge}
             accent
@@ -293,6 +293,7 @@ export function GridPulseDashboard() {
             icon={BatteryCharging}
             accent
           />
+          <Metric label="Charging done" value={completedCount} icon={CheckCircle2} />
         </section>
 
         {isConstrained && (
@@ -305,7 +306,9 @@ export function GridPulseDashboard() {
               <div>
                 <p className="text-sm font-semibold text-warning">Grid constraint detected</p>
                 <p className="text-xs text-muted-foreground">
-                  EV charging automatically optimized · transformer limit protected
+                  {availableChargingCapacityKw < 0.1
+                    ? "No charging capacity — building demand is consuming the full grid budget."
+                    : "EV charging automatically optimized · transformer limit protected"}
                 </p>
               </div>
             </div>

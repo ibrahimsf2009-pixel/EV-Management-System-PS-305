@@ -119,7 +119,13 @@ export function VehicleDialog({
             min={DERIVED_RANGES.maxPower.min}
             max={DERIVED_RANGES.maxPower.max}
             onValueChange={(maxPower) => setForm({ ...form, maxPower })}
-            className="sm:col-span-2"
+          />
+          <NumberField
+            label="Battery pack (kWh)"
+            value={form.batteryPackKwh}
+            min={DERIVED_RANGES.batteryPackKwh.min}
+            max={DERIVED_RANGES.batteryPackKwh.max}
+            onValueChange={(batteryPackKwh) => setForm({ ...form, batteryPackKwh })}
           />
         </div>
         <DialogFooter>

@@ -20,6 +20,11 @@ function toVehicle(value: unknown): Vehicle | null {
     target,
     departure: typeof record["departure"] === "string" ? record["departure"] : "12:00",
     maxPower,
+    // Rows saved before pack size existed get a sensible default rather
+    // than being discarded.
+    batteryPackKwh: Number.isFinite(Number(record["batteryPackKwh"]))
+      ? Number(record["batteryPackKwh"])
+      : 60,
   };
 }
 
