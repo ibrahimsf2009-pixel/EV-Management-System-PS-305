@@ -66,6 +66,7 @@ def main() -> int:
     )
 
     print("4. Limited grid capacity (throttled)")
+    client.post("/api/reset")  # drop EV-URGENT; scenario needs the clean demo fleet
     reset_state(grid=35, building=30, solar=2)
     s = client.get("/api/state").get_json()
     throttled = [
@@ -121,6 +122,7 @@ def main() -> int:
     )
 
     print("8. Shared charging (throttled wording already checked)")
+    client.post("/api/reset")  # drop EV-EXTRA; scenario needs the clean demo fleet
     reset_state(grid=35, building=30, solar=2)
     s = client.get("/api/state").get_json()
     thr = [s["explanations"][a["id"]] for a in s["allocation"]["allocations"] if a["status"] == "throttled"]
