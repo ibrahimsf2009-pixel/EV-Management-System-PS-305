@@ -25,6 +25,12 @@ import { PowerDemandChart } from "@/components/grid/power-demand-chart";
 import { SmartAllocationSection } from "@/components/grid/smart-allocation";
 import { VehicleDialog } from "@/components/grid/vehicle-dialog";
 import { VehicleQueueSection } from "@/components/grid/vehicle-queue";
+import {
+  AnalyticsView,
+  EnergyView,
+  SettingsView,
+  VehiclesView,
+} from "@/components/grid/focused-views";
 import { allocate, minutesOfDay } from "@/lib/grid/allocation";
 import {
   BUILDING_DEMAND_RANGE,
@@ -36,7 +42,7 @@ import {
 } from "@/lib/grid/constants";
 import { computeDerived } from "@/lib/grid/derived";
 import { DEMO_STATE_ID, mapDemoStateRow, supabase } from "@/lib/grid/persistence";
-import type { ChartPoint, Scenario, View } from "@/lib/grid/types";
+import type { ChartPoint, GridInputs, Scenario, View } from "@/lib/grid/types";
 
 const NAV: { id: View; label: string }[] = [
   { id: "dashboard", label: "Dashboard" },
@@ -171,6 +177,22 @@ export function GridPulseDashboard() {
     setVehicles((current) => [...current, vehicle]);
   }, []);
 
+  const handleInput = useCallback((key: keyof GridInputs, value: number) => {
+    if (key === "gridCapacity") {
+      setGridCapacity(value);
+    } else if (key === "buildingDemand") {
+      setBuildingDemand(value);
+    } else {
+      setSolarGeneration(value);
+    }
+    setScenario("normal");
+  }, []);
+
+  const resetSimulation = useCallback(() => {
+    setVehicles(initialVehicles);
+    applyScenario("normal");
+  }, [applyScenario]);
+
   return (
     <main className="control-grid min-h-screen text-foreground">
       <Toaster position="bottom-right" />
@@ -256,169 +278,220 @@ export function GridPulseDashboard() {
           </div>
         </div>
 
-        {view !== "dashboard" && (
-          <section className="panel mb-5">
-            <PanelTitle
-              eyebrow="Focused view"
-              title={VIEW_TITLES[view].panel}
-              icon={VIEW_TITLES[view].icon}
-            />
-            <div className="p-5 text-sm text-muted-foreground">
-              This focused view uses the same live simulation. Controls and telemetry remain
-              synchronized with the main operations board.
-            </div>
-          </section>
-        )}
-
-        <section className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
-          <Metric label="Active EVs" value={vehicles.length} icon={CarFront} />
-          <Metric
-            label="Total demand"
-            value={derived.totalDemand.toFixed(1)}
-            unit="kW"
-            icon={Activity}
-          />
-          <Metric
-            label="Charging budget"
-            value={availableChargingCapacityKw.toFixed(1)}
-            unit="kW"
-            icon={CircleGauge}
-            accent
-          />
-          <Metric label="Solar generation" value={solarGeneration} unit="kW" icon={Sun} />
-          <Metric
-            label="EV charging"
-            value={evLoad.toFixed(1)}
-            unit="kW"
-            icon={BatteryCharging}
-            accent
-          />
-          <Metric label="Charging done" value={completedCount} icon={CheckCircle2} />
-        </section>
-
-        {isConstrained && (
-          <div
-            className="mt-4 flex flex-col justify-between gap-3 rounded-lg border border-warning/35 bg-warning/10 px-4 py-3 shadow-[0_10px_28px_-18px_oklch(0.77_0.15_65/0.5)] backdrop-blur-sm transition-colors md:flex-row md:items-center"
-            role="alert"
-          >
-            <div className="flex items-center gap-3">
-              <AlertTriangle className="shrink-0 text-warning" size={20} />
-              <div>
-                <p className="text-sm font-semibold text-warning">Grid constraint detected</p>
-                <p className="text-xs text-muted-foreground">
-                  {availableChargingCapacityKw < 0.1
-                    ? "No charging capacity — building demand is consuming the full grid budget."
-                    : "EV charging automatically optimized · transformer limit protected"}
-                </p>
-              </div>
-            </div>
-            <span className="tnum font-mono text-[10px] uppercase tracking-wider text-warning">
-              {derived.utilization}% utilized
-            </span>
-          </div>
-        )}
-
-        <div className="mt-5">
-          <EnergyFlowSection
+        {view === "vehicles" && (
+          <VehiclesView
             inputs={{ gridCapacity, buildingDemand, solarGeneration }}
-            totalDemand={derived.totalDemand}
+            vehicles={vehicles}
+            allocations={allocations}
+            chartData={chartData}
+            derived={derived}
             evLoad={evLoad}
+            scenario={scenario}
+            onScenario={applyScenario}
+            onInput={handleInput}
+            onReset={resetSimulation}
           />
-        </div>
+        )}
+        {view === "energy" && (
+          <EnergyView
+            inputs={{ gridCapacity, buildingDemand, solarGeneration }}
+            vehicles={vehicles}
+            allocations={allocations}
+            chartData={chartData}
+            derived={derived}
+            evLoad={evLoad}
+            scenario={scenario}
+            onScenario={applyScenario}
+            onInput={handleInput}
+            onReset={resetSimulation}
+          />
+        )}
+        {view === "analytics" && (
+          <AnalyticsView
+            inputs={{ gridCapacity, buildingDemand, solarGeneration }}
+            vehicles={vehicles}
+            allocations={allocations}
+            chartData={chartData}
+            derived={derived}
+            evLoad={evLoad}
+            scenario={scenario}
+            onScenario={applyScenario}
+            onInput={handleInput}
+            onReset={resetSimulation}
+          />
+        )}
+        {view === "settings" && (
+          <SettingsView
+            inputs={{ gridCapacity, buildingDemand, solarGeneration }}
+            vehicles={vehicles}
+            allocations={allocations}
+            chartData={chartData}
+            derived={derived}
+            evLoad={evLoad}
+            scenario={scenario}
+            onScenario={applyScenario}
+            onInput={handleInput}
+            onReset={resetSimulation}
+          />
+        )}
 
-        <div className="mt-5 grid gap-4 xl:grid-cols-[1.4fr_1fr]">
-          <PowerDemandChart data={chartData} />
-          <VehicleQueueSection allocations={allocations} />
-        </div>
+        {view === "dashboard" && (
+          <>
+            <section className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
+              <Metric label="Active EVs" value={vehicles.length} icon={CarFront} />
+              <Metric
+                label="Total demand"
+                value={derived.totalDemand.toFixed(1)}
+                unit="kW"
+                icon={Activity}
+              />
+              <Metric
+                label="Charging budget"
+                value={availableChargingCapacityKw.toFixed(1)}
+                unit="kW"
+                icon={CircleGauge}
+                accent
+              />
+              <Metric label="Solar generation" value={solarGeneration} unit="kW" icon={Sun} />
+              <Metric
+                label="EV charging"
+                value={evLoad.toFixed(1)}
+                unit="kW"
+                icon={BatteryCharging}
+                accent
+              />
+              <Metric label="Charging done" value={completedCount} icon={CheckCircle2} />
+            </section>
 
-        <div className="mt-5 grid gap-4 xl:grid-cols-[1.4fr_1fr]">
-          <SmartAllocationSection allocations={allocations} />
-
-          <section className="panel">
-            <PanelTitle eyebrow="Adaptive inputs" title="Simulation Controls" icon={Settings2} />
-            <div className="space-y-5 p-5">
-              <div className="grid grid-cols-3 gap-2">
-                {(["normal", "peak", "solar"] as Scenario[]).map((item) => (
-                  <Button
-                    key={item}
-                    variant={scenario === item ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => applyScenario(item)}
-                    className="px-1.5 text-[9px] uppercase tracking-wider sm:px-2 sm:text-[10px]"
-                  >
-                    {item === "solar" ? "Solar surplus" : item}
-                  </Button>
-                ))}
+            {isConstrained && (
+              <div
+                className="mt-4 flex flex-col justify-between gap-3 rounded-lg border border-warning/35 bg-warning/10 px-4 py-3 shadow-[0_10px_28px_-18px_oklch(0.77_0.15_65/0.5)] backdrop-blur-sm transition-colors md:flex-row md:items-center"
+                role="alert"
+              >
+                <div className="flex items-center gap-3">
+                  <AlertTriangle className="shrink-0 text-warning" size={20} />
+                  <div>
+                    <p className="text-sm font-semibold text-warning">Grid constraint detected</p>
+                    <p className="text-xs text-muted-foreground">
+                      {availableChargingCapacityKw < 0.1
+                        ? "No charging capacity — building demand is consuming the full grid budget."
+                        : "EV charging automatically optimized · transformer limit protected"}
+                    </p>
+                  </div>
+                </div>
+                <span className="tnum font-mono text-[10px] uppercase tracking-wider text-warning">
+                  {derived.utilization}% utilized
+                </span>
               </div>
-              <Control
-                label="Grid capacity"
-                value={gridCapacity}
-                min={GRID_CAPACITY_RANGE.min}
-                max={GRID_CAPACITY_RANGE.max}
-                unit="kW"
-                onChange={(value) => {
-                  setGridCapacity(value);
-                  setScenario("normal");
-                }}
+            )}
+
+            <div className="mt-5">
+              <EnergyFlowSection
+                inputs={{ gridCapacity, buildingDemand, solarGeneration }}
+                totalDemand={derived.totalDemand}
+                evLoad={evLoad}
               />
-              <Control
-                label="Building demand"
-                value={buildingDemand}
-                min={BUILDING_DEMAND_RANGE.min}
-                max={BUILDING_DEMAND_RANGE.max}
-                unit="kW"
-                onChange={(value) => {
-                  setBuildingDemand(value);
-                  setScenario("normal");
-                }}
-              />
-              <Control
-                label="Solar generation"
-                value={solarGeneration}
-                min={SOLAR_RANGE.min}
-                max={SOLAR_RANGE.max}
-                unit="kW"
-                onChange={(value) => {
-                  setSolarGeneration(value);
-                  setScenario("normal");
-                }}
-              />
-              <div className="flex gap-2 pt-1">
-                <VehicleDialog vehicles={vehicles} onAdd={addVehicle} />
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={() => setVehicles((current) => current.slice(0, -1))}
-                  disabled={!vehicles.length}
-                  title="Remove last EV"
-                >
-                  <Minus size={14} />
-                  <span className="sr-only">Remove last EV</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={() => {
-                    setVehicles(initialVehicles);
-                    applyScenario("normal");
-                  }}
-                  title="Reset simulation"
-                >
-                  <RotateCcw size={14} />
-                  <span className="sr-only">Reset simulation</span>
-                </Button>
-              </div>
             </div>
-          </section>
-        </div>
 
-        <EnvironmentFooter
-          solarGeneration={solarGeneration}
-          buildingDemand={buildingDemand}
-          renewableShare={derived.renewableShare}
-          solarSurplus={derived.solarSurplus}
-          cleanCharging={derived.cleanCharging}
-        />
+            <div className="mt-5 grid gap-4 xl:grid-cols-[1.4fr_1fr]">
+              <PowerDemandChart data={chartData} />
+              <VehicleQueueSection allocations={allocations} />
+            </div>
+
+            <div className="mt-5 grid gap-4 xl:grid-cols-[1.4fr_1fr]">
+              <SmartAllocationSection allocations={allocations} />
+
+              <section className="panel">
+                <PanelTitle
+                  eyebrow="Adaptive inputs"
+                  title="Simulation Controls"
+                  icon={Settings2}
+                />
+                <div className="space-y-5 p-5">
+                  <div className="grid grid-cols-3 gap-2">
+                    {(["normal", "peak", "solar"] as Scenario[]).map((item) => (
+                      <Button
+                        key={item}
+                        variant={scenario === item ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => applyScenario(item)}
+                        className="px-1.5 text-[9px] uppercase tracking-wider sm:px-2 sm:text-[10px]"
+                      >
+                        {item === "solar" ? "Solar surplus" : item}
+                      </Button>
+                    ))}
+                  </div>
+                  <Control
+                    label="Grid capacity"
+                    value={gridCapacity}
+                    min={GRID_CAPACITY_RANGE.min}
+                    max={GRID_CAPACITY_RANGE.max}
+                    unit="kW"
+                    onChange={(value) => {
+                      setGridCapacity(value);
+                      setScenario("normal");
+                    }}
+                  />
+                  <Control
+                    label="Building demand"
+                    value={buildingDemand}
+                    min={BUILDING_DEMAND_RANGE.min}
+                    max={BUILDING_DEMAND_RANGE.max}
+                    unit="kW"
+                    onChange={(value) => {
+                      setBuildingDemand(value);
+                      setScenario("normal");
+                    }}
+                  />
+                  <Control
+                    label="Solar generation"
+                    value={solarGeneration}
+                    min={SOLAR_RANGE.min}
+                    max={SOLAR_RANGE.max}
+                    unit="kW"
+                    onChange={(value) => {
+                      setSolarGeneration(value);
+                      setScenario("normal");
+                    }}
+                  />
+                  <div className="flex gap-2 pt-1">
+                    <VehicleDialog vehicles={vehicles} onAdd={addVehicle} />
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => setVehicles((current) => current.slice(0, -1))}
+                      disabled={!vehicles.length}
+                      title="Remove last EV"
+                    >
+                      <Minus size={14} />
+                      <span className="sr-only">Remove last EV</span>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => {
+                        setVehicles(initialVehicles);
+                        applyScenario("normal");
+                      }}
+                      title="Reset simulation"
+                    >
+                      <RotateCcw size={14} />
+                      <span className="sr-only">Reset simulation</span>
+                    </Button>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <EnvironmentFooter
+              solarGeneration={solarGeneration}
+              buildingDemand={buildingDemand}
+              renewableShare={derived.renewableShare}
+              solarSurplus={derived.solarSurplus}
+              cleanCharging={derived.cleanCharging}
+            />
+          </>
+        )}
       </div>
     </main>
   );
