@@ -1,29 +1,76 @@
-# Welcome to your Lovable project
+# GridPulse — Smart EV Charging & Grid Management
 
-This project was built with [Lovable](https://lovable.dev).
+GridPulse is a real-time dashboard for managing EV charging within a building's
+grid capacity envelope. It pairs a deterministic, explainable charging
+allocator with live telemetry: solar generation, building demand, and
+transformer headroom — so every charging decision is visible and justified.
 
-## Build with Lovable
+## Features
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+- **Deterministic allocation** — two-phase control: priority service at full
+  rate, then priority-weighted fair sharing of remaining headroom. The budget
+  follows the transformer-import invariant so grid capacity can never be
+  violated, including during solar surplus.
+- **Explainable queue** — every vehicle exposes priority factors, status
+  (charging / throttled / constraint-limited / scheduled / waiting /
+  completed), energy needed, ETA, and honest reason strings for its rank and
+  power level.
+- **Live telemetry** — rolling power-demand chart, energy-flow topology, and
+  scenario presets (normal / peak / solar surplus).
+- **Persistent state** — simulation state syncs to Supabase with debounced
+  saves.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## Tech stack
 
-## Development
+- [TanStack Start](https://tanstack.com/start) (SSR) + React 19 + TypeScript
+- Tailwind CSS v4 (cyan/yellow instrument-panel theme)
+- Recharts, Radix UI, lucide-react
+- Supabase (state persistence)
+- Vite + Nitro (Cloudflare Workers target)
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Getting started
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
 npm i
+cp .env.example .env.local   # then fill in your Supabase project values
 npm run dev
 ```
 
-## Built with
+## Environment variables
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+| Variable | Required | Description |
+| --- | --- | --- |
+| `VITE_SUPABASE_URL` | yes | Supabase project URL |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | yes | Supabase publishable (anon) key |
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | Lint with ESLint |
+| `npm run format` | Format with Prettier |
+
+## Project structure
+
+```
+src/
+  components/
+    grid/          # GridPulse feature components (queue, charts, flow, controls)
+    ui/            # Generic UI primitives (shadcn/radix)
+  hooks/           # Shared React hooks
+  integrations/
+    supabase/      # Supabase client, SSR client, types
+  lib/
+    grid/          # Allocation engine, status taxonomy, persistence
+  routes/          # TanStack Router routes
+  server.ts        # SSR entry with error normalization
+```
+
+## Deployment
+
+The app builds with Nitro and targets Cloudflare Workers, but deploys
+anywhere Nitro presets are supported. On Vercel, `vercel --prod` builds and
+deploys with zero extra config.

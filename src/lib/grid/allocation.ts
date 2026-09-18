@@ -228,10 +228,7 @@ export function allocate(
   // The invariant is therefore satisfied by construction — the EV cluster can
   // never overload the transformer, even during a solar surplus. The result
   // is clamped at 0; the allocator never invents power.
-  const availableChargingCapacityKw = Math.max(
-    0,
-    gridCapacity - buildingDemand + solarGeneration,
-  );
+  const availableChargingCapacityKw = Math.max(0, gridCapacity - buildingDemand + solarGeneration);
   const clusterHasCapacity = availableChargingCapacityKw > 1e-9;
 
   // ── Step 2: deterministic priority order ─────────────────────────────────
