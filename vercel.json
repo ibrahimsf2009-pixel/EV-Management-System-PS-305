@@ -12,7 +12,8 @@
   ],
   "functions": {
     "api/index.py": {
-      "maxDuration": 60
+      "maxDuration": 60,
+      "excludeFiles": "{node_modules/**,.git/**,.output/**,.tanstack/**,.wrangler/**,.vercel/**,dist/**,src/**,drizzle/**,supabase/**,public/**,scripts/**,backend/__pycache__/**,**/.env,**/.env.*}"
     }
   }
 }
