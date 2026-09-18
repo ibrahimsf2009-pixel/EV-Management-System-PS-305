@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1789715666884,
+      "tag": "0000_create_gridpulse_demo_state",
+      "breakpoints": true
+    }
+  ]
+}
