@@ -188,7 +188,7 @@ export function GridPulseDashboard() {
                 <Bolt size={16} fill="currentColor" />
               </span>
               <span className="font-mono text-base font-medium uppercase tracking-wide">
-                Grid<span className="text-primary">Pulse</span>
+                Grid<span className="text-solar">Pulse</span>
               </span>
             </button>
             <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
