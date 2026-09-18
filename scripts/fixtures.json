@@ -1,0 +1,2423 @@
+[
+ {
+  "name": "demo-fleet@0",
+  "vehicles": [
+   {
+    "id": "EV-07",
+    "battery": 18,
+    "target": 85,
+    "departure": "09:15",
+    "maxPower": 11,
+    "batteryPackKwh": 64
+   },
+   {
+    "id": "EV-03",
+    "battery": 42,
+    "target": 80,
+    "departure": "11:30",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-11",
+    "battery": 76,
+    "target": 90,
+    "departure": "16:45",
+    "maxPower": 7,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-04",
+    "battery": 63,
+    "target": 90,
+    "departure": "14:20",
+    "maxPower": 11,
+    "batteryPackKwh": 82
+   },
+   {
+    "id": "EV-09",
+    "battery": 31,
+    "target": 75,
+    "departure": "12:10",
+    "maxPower": 7,
+    "batteryPackKwh": 60
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 50,
+   "buildingDemand": 17,
+   "solarGeneration": 17
+  },
+  "nowMinutes": 0,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-07",
+     "battery": 18,
+     "target": 85,
+     "departure": "09:15",
+     "maxPower": 11,
+     "batteryPackKwh": 64,
+     "priority": 60,
+     "priorityFactors": {
+      "batteryUrgency": 1,
+      "departureUrgency": 0,
+      "energyDeficit": 0.788235294117647
+     },
+     "power": 11,
+     "energyNeededKwh": 42.9,
+     "status": "charging",
+     "etaMinutesFromNow": 234,
+     "capacityBudgetKw": 50,
+     "servedOrder": 0,
+     "priorityReason": "Critical battery (18%) — near-empty vehicles are served first.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-09",
+     "battery": 31,
+     "target": 75,
+     "departure": "12:10",
+     "maxPower": 7,
+     "batteryPackKwh": 60,
+     "priority": 49,
+     "priorityFactors": {
+      "batteryUrgency": 0.8625,
+      "departureUrgency": 0,
+      "energyDeficit": 0.5866666666666667
+     },
+     "power": 7,
+     "energyNeededKwh": 26.4,
+     "status": "charging",
+     "etaMinutesFromNow": 226,
+     "capacityBudgetKw": 50,
+     "servedOrder": 1,
+     "priorityReason": "Battery is getting low (31%).",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-03",
+     "battery": 42,
+     "target": 80,
+     "departure": "11:30",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 41,
+     "priorityFactors": {
+      "batteryUrgency": 0.725,
+      "departureUrgency": 0,
+      "energyDeficit": 0.475
+     },
+     "power": 7,
+     "energyNeededKwh": 22,
+     "status": "charging",
+     "etaMinutesFromNow": 189,
+     "capacityBudgetKw": 50,
+     "servedOrder": 2,
+     "priorityReason": "Battery is getting low (42%).",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-04",
+     "battery": 63,
+     "target": 90,
+     "departure": "14:20",
+     "maxPower": 11,
+     "batteryPackKwh": 82,
+     "priority": 26,
+     "priorityFactors": {
+      "batteryUrgency": 0.4625,
+      "departureUrgency": 0,
+      "energyDeficit": 0.3
+     },
+     "power": 11,
+     "energyNeededKwh": 22.1,
+     "status": "charging",
+     "etaMinutesFromNow": 121,
+     "capacityBudgetKw": 50,
+     "servedOrder": 3,
+     "priorityReason": "Comfortable margins — battery 63%, departs 14:20.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-11",
+     "battery": 76,
+     "target": 90,
+     "departure": "16:45",
+     "maxPower": 7,
+     "batteryPackKwh": 75,
+     "priority": 16,
+     "priorityFactors": {
+      "batteryUrgency": 0.3,
+      "departureUrgency": 0,
+      "energyDeficit": 0.15555555555555556
+     },
+     "power": 7,
+     "energyNeededKwh": 10.5,
+     "status": "charging",
+     "etaMinutesFromNow": 90,
+     "capacityBudgetKw": 50,
+     "servedOrder": 4,
+     "priorityReason": "Comfortable margins — battery 76%, departs 16:45.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    }
+   ],
+   "availableChargingCapacityKw": 50,
+   "totalAllocatedKw": 43,
+   "chargingCount": 5,
+   "completedCount": 0
+  },
+  "derived": {
+   "gridImport": 43,
+   "totalDemand": 43,
+   "headroom": 7,
+   "utilization": 86,
+   "renewableShare": 28,
+   "solarSurplus": 0,
+   "cleanCharging": 17
+  }
+ },
+ {
+  "name": "demo-fleet@300",
+  "vehicles": [
+   {
+    "id": "EV-07",
+    "battery": 18,
+    "target": 85,
+    "departure": "09:15",
+    "maxPower": 11,
+    "batteryPackKwh": 64
+   },
+   {
+    "id": "EV-03",
+    "battery": 42,
+    "target": 80,
+    "departure": "11:30",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-11",
+    "battery": 76,
+    "target": 90,
+    "departure": "16:45",
+    "maxPower": 7,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-04",
+    "battery": 63,
+    "target": 90,
+    "departure": "14:20",
+    "maxPower": 11,
+    "batteryPackKwh": 82
+   },
+   {
+    "id": "EV-09",
+    "battery": 31,
+    "target": 75,
+    "departure": "12:10",
+    "maxPower": 7,
+    "batteryPackKwh": 60
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 50,
+   "buildingDemand": 17,
+   "solarGeneration": 17
+  },
+  "nowMinutes": 300,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-07",
+     "battery": 18,
+     "target": 85,
+     "departure": "09:15",
+     "maxPower": 11,
+     "batteryPackKwh": 64,
+     "priority": 76,
+     "priorityFactors": {
+      "batteryUrgency": 1,
+      "departureUrgency": 0.46875,
+      "energyDeficit": 0.788235294117647
+     },
+     "power": 11,
+     "energyNeededKwh": 42.9,
+     "status": "charging",
+     "etaMinutesFromNow": 234,
+     "capacityBudgetKw": 50,
+     "servedOrder": 0,
+     "priorityReason": "Critical battery (18%) — near-empty vehicles are served first.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-09",
+     "battery": 31,
+     "target": 75,
+     "departure": "12:10",
+     "maxPower": 7,
+     "batteryPackKwh": 60,
+     "priority": 53,
+     "priorityFactors": {
+      "batteryUrgency": 0.8625,
+      "departureUrgency": 0.10416666666666663,
+      "energyDeficit": 0.5866666666666667
+     },
+     "power": 7,
+     "energyNeededKwh": 26.4,
+     "status": "charging",
+     "etaMinutesFromNow": 226,
+     "capacityBudgetKw": 50,
+     "servedOrder": 1,
+     "priorityReason": "Battery is getting low (31%).",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-03",
+     "battery": 42,
+     "target": 80,
+     "departure": "11:30",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 47,
+     "priorityFactors": {
+      "batteryUrgency": 0.725,
+      "departureUrgency": 0.1875,
+      "energyDeficit": 0.475
+     },
+     "power": 7,
+     "energyNeededKwh": 22,
+     "status": "charging",
+     "etaMinutesFromNow": 189,
+     "capacityBudgetKw": 50,
+     "servedOrder": 2,
+     "priorityReason": "Battery is getting low (42%).",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-04",
+     "battery": 63,
+     "target": 90,
+     "departure": "14:20",
+     "maxPower": 11,
+     "batteryPackKwh": 82,
+     "priority": 26,
+     "priorityFactors": {
+      "batteryUrgency": 0.4625,
+      "departureUrgency": 0,
+      "energyDeficit": 0.3
+     },
+     "power": 11,
+     "energyNeededKwh": 22.1,
+     "status": "charging",
+     "etaMinutesFromNow": 121,
+     "capacityBudgetKw": 50,
+     "servedOrder": 3,
+     "priorityReason": "Comfortable margins — battery 63%, departs 14:20.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-11",
+     "battery": 76,
+     "target": 90,
+     "departure": "16:45",
+     "maxPower": 7,
+     "batteryPackKwh": 75,
+     "priority": 16,
+     "priorityFactors": {
+      "batteryUrgency": 0.3,
+      "departureUrgency": 0,
+      "energyDeficit": 0.15555555555555556
+     },
+     "power": 7,
+     "energyNeededKwh": 10.5,
+     "status": "charging",
+     "etaMinutesFromNow": 90,
+     "capacityBudgetKw": 50,
+     "servedOrder": 4,
+     "priorityReason": "Comfortable margins — battery 76%, departs 16:45.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    }
+   ],
+   "availableChargingCapacityKw": 50,
+   "totalAllocatedKw": 43,
+   "chargingCount": 5,
+   "completedCount": 0
+  },
+  "derived": {
+   "gridImport": 43,
+   "totalDemand": 43,
+   "headroom": 7,
+   "utilization": 86,
+   "renewableShare": 28,
+   "solarSurplus": 0,
+   "cleanCharging": 17
+  }
+ },
+ {
+  "name": "demo-fleet@555",
+  "vehicles": [
+   {
+    "id": "EV-07",
+    "battery": 18,
+    "target": 85,
+    "departure": "09:15",
+    "maxPower": 11,
+    "batteryPackKwh": 64
+   },
+   {
+    "id": "EV-03",
+    "battery": 42,
+    "target": 80,
+    "departure": "11:30",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-11",
+    "battery": 76,
+    "target": 90,
+    "departure": "16:45",
+    "maxPower": 7,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-04",
+    "battery": 63,
+    "target": 90,
+    "departure": "14:20",
+    "maxPower": 11,
+    "batteryPackKwh": 82
+   },
+   {
+    "id": "EV-09",
+    "battery": 31,
+    "target": 75,
+    "departure": "12:10",
+    "maxPower": 7,
+    "batteryPackKwh": 60
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 50,
+   "buildingDemand": 17,
+   "solarGeneration": 17
+  },
+  "nowMinutes": 555,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-07",
+     "battery": 18,
+     "target": 85,
+     "departure": "09:15",
+     "maxPower": 11,
+     "batteryPackKwh": 64,
+     "priority": 95,
+     "priorityFactors": {
+      "batteryUrgency": 1,
+      "departureUrgency": 1,
+      "energyDeficit": 0.788235294117647
+     },
+     "power": 11,
+     "energyNeededKwh": 42.9,
+     "status": "charging",
+     "etaMinutesFromNow": 234,
+     "capacityBudgetKw": 50,
+     "servedOrder": 0,
+     "priorityReason": "Critical battery (18%) — near-empty vehicles are served first.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-09",
+     "battery": 31,
+     "target": 75,
+     "departure": "12:10",
+     "maxPower": 7,
+     "batteryPackKwh": 60,
+     "priority": 84,
+     "priorityFactors": {
+      "batteryUrgency": 0.8625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.5866666666666667
+     },
+     "power": 7,
+     "energyNeededKwh": 26.4,
+     "status": "charging",
+     "etaMinutesFromNow": 226,
+     "capacityBudgetKw": 50,
+     "servedOrder": 1,
+     "priorityReason": "Departure at 12:10 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": [
+      "At 7 kW it will not reach 75% before its 12:10 departure."
+     ]
+    },
+    {
+     "id": "EV-03",
+     "battery": 42,
+     "target": 80,
+     "departure": "11:30",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 76,
+     "priorityFactors": {
+      "batteryUrgency": 0.725,
+      "departureUrgency": 1,
+      "energyDeficit": 0.475
+     },
+     "power": 7,
+     "energyNeededKwh": 22,
+     "status": "charging",
+     "etaMinutesFromNow": 189,
+     "capacityBudgetKw": 50,
+     "servedOrder": 2,
+     "priorityReason": "Departure at 11:30 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": [
+      "At 7 kW it will not reach 80% before its 11:30 departure."
+     ]
+    },
+    {
+     "id": "EV-04",
+     "battery": 63,
+     "target": 90,
+     "departure": "14:20",
+     "maxPower": 11,
+     "batteryPackKwh": 82,
+     "priority": 39,
+     "priorityFactors": {
+      "batteryUrgency": 0.4625,
+      "departureUrgency": 0.36458333333333337,
+      "energyDeficit": 0.3
+     },
+     "power": 11,
+     "energyNeededKwh": 22.1,
+     "status": "charging",
+     "etaMinutesFromNow": 121,
+     "capacityBudgetKw": 50,
+     "servedOrder": 3,
+     "priorityReason": "Comfortable margins — battery 63%, departs 14:20.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-11",
+     "battery": 76,
+     "target": 90,
+     "departure": "16:45",
+     "maxPower": 7,
+     "batteryPackKwh": 75,
+     "priority": 18,
+     "priorityFactors": {
+      "batteryUrgency": 0.3,
+      "departureUrgency": 0.0625,
+      "energyDeficit": 0.15555555555555556
+     },
+     "power": 7,
+     "energyNeededKwh": 10.5,
+     "status": "charging",
+     "etaMinutesFromNow": 90,
+     "capacityBudgetKw": 50,
+     "servedOrder": 4,
+     "priorityReason": "Comfortable margins — battery 76%, departs 16:45.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    }
+   ],
+   "availableChargingCapacityKw": 50,
+   "totalAllocatedKw": 43,
+   "chargingCount": 5,
+   "completedCount": 0
+  },
+  "derived": {
+   "gridImport": 43,
+   "totalDemand": 43,
+   "headroom": 7,
+   "utilization": 86,
+   "renewableShare": 28,
+   "solarSurplus": 0,
+   "cleanCharging": 17
+  }
+ },
+ {
+  "name": "demo-fleet@720",
+  "vehicles": [
+   {
+    "id": "EV-07",
+    "battery": 18,
+    "target": 85,
+    "departure": "09:15",
+    "maxPower": 11,
+    "batteryPackKwh": 64
+   },
+   {
+    "id": "EV-03",
+    "battery": 42,
+    "target": 80,
+    "departure": "11:30",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-11",
+    "battery": 76,
+    "target": 90,
+    "departure": "16:45",
+    "maxPower": 7,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-04",
+    "battery": 63,
+    "target": 90,
+    "departure": "14:20",
+    "maxPower": 11,
+    "batteryPackKwh": 82
+   },
+   {
+    "id": "EV-09",
+    "battery": 31,
+    "target": 75,
+    "departure": "12:10",
+    "maxPower": 7,
+    "batteryPackKwh": 60
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 50,
+   "buildingDemand": 17,
+   "solarGeneration": 17
+  },
+  "nowMinutes": 720,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-07",
+     "battery": 18,
+     "target": 85,
+     "departure": "09:15",
+     "maxPower": 11,
+     "batteryPackKwh": 64,
+     "priority": 95,
+     "priorityFactors": {
+      "batteryUrgency": 1,
+      "departureUrgency": 1,
+      "energyDeficit": 0.788235294117647
+     },
+     "power": 11,
+     "energyNeededKwh": 42.9,
+     "status": "charging",
+     "etaMinutesFromNow": 234,
+     "capacityBudgetKw": 50,
+     "servedOrder": 0,
+     "priorityReason": "Critical battery (18%) — near-empty vehicles are served first.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-09",
+     "battery": 31,
+     "target": 75,
+     "departure": "12:10",
+     "maxPower": 7,
+     "batteryPackKwh": 60,
+     "priority": 84,
+     "priorityFactors": {
+      "batteryUrgency": 0.8625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.5866666666666667
+     },
+     "power": 7,
+     "energyNeededKwh": 26.4,
+     "status": "charging",
+     "etaMinutesFromNow": 226,
+     "capacityBudgetKw": 50,
+     "servedOrder": 1,
+     "priorityReason": "Departure at 12:10 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": [
+      "At 7 kW it will not reach 75% before its 12:10 departure."
+     ]
+    },
+    {
+     "id": "EV-03",
+     "battery": 42,
+     "target": 80,
+     "departure": "11:30",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 76,
+     "priorityFactors": {
+      "batteryUrgency": 0.725,
+      "departureUrgency": 1,
+      "energyDeficit": 0.475
+     },
+     "power": 7,
+     "energyNeededKwh": 22,
+     "status": "charging",
+     "etaMinutesFromNow": 189,
+     "capacityBudgetKw": 50,
+     "servedOrder": 2,
+     "priorityReason": "Departure at 11:30 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-04",
+     "battery": 63,
+     "target": 90,
+     "departure": "14:20",
+     "maxPower": 11,
+     "batteryPackKwh": 82,
+     "priority": 51,
+     "priorityFactors": {
+      "batteryUrgency": 0.4625,
+      "departureUrgency": 0.7083333333333333,
+      "energyDeficit": 0.3
+     },
+     "power": 11,
+     "energyNeededKwh": 22.1,
+     "status": "charging",
+     "etaMinutesFromNow": 121,
+     "capacityBudgetKw": 50,
+     "servedOrder": 3,
+     "priorityReason": "Departure at 14:20 is approaching — needs its charge soon.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-11",
+     "battery": 76,
+     "target": 90,
+     "departure": "16:45",
+     "maxPower": 7,
+     "batteryPackKwh": 75,
+     "priority": 30,
+     "priorityFactors": {
+      "batteryUrgency": 0.3,
+      "departureUrgency": 0.40625,
+      "energyDeficit": 0.15555555555555556
+     },
+     "power": 7,
+     "energyNeededKwh": 10.5,
+     "status": "charging",
+     "etaMinutesFromNow": 90,
+     "capacityBudgetKw": 50,
+     "servedOrder": 4,
+     "priorityReason": "Comfortable margins — battery 76%, departs 16:45.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    }
+   ],
+   "availableChargingCapacityKw": 50,
+   "totalAllocatedKw": 43,
+   "chargingCount": 5,
+   "completedCount": 0
+  },
+  "derived": {
+   "gridImport": 43,
+   "totalDemand": 43,
+   "headroom": 7,
+   "utilization": 86,
+   "renewableShare": 28,
+   "solarSurplus": 0,
+   "cleanCharging": 17
+  }
+ },
+ {
+  "name": "demo-fleet@1005",
+  "vehicles": [
+   {
+    "id": "EV-07",
+    "battery": 18,
+    "target": 85,
+    "departure": "09:15",
+    "maxPower": 11,
+    "batteryPackKwh": 64
+   },
+   {
+    "id": "EV-03",
+    "battery": 42,
+    "target": 80,
+    "departure": "11:30",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-11",
+    "battery": 76,
+    "target": 90,
+    "departure": "16:45",
+    "maxPower": 7,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-04",
+    "battery": 63,
+    "target": 90,
+    "departure": "14:20",
+    "maxPower": 11,
+    "batteryPackKwh": 82
+   },
+   {
+    "id": "EV-09",
+    "battery": 31,
+    "target": 75,
+    "departure": "12:10",
+    "maxPower": 7,
+    "batteryPackKwh": 60
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 50,
+   "buildingDemand": 17,
+   "solarGeneration": 17
+  },
+  "nowMinutes": 1005,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-07",
+     "battery": 18,
+     "target": 85,
+     "departure": "09:15",
+     "maxPower": 11,
+     "batteryPackKwh": 64,
+     "priority": 95,
+     "priorityFactors": {
+      "batteryUrgency": 1,
+      "departureUrgency": 1,
+      "energyDeficit": 0.788235294117647
+     },
+     "power": 11,
+     "energyNeededKwh": 42.9,
+     "status": "charging",
+     "etaMinutesFromNow": 234,
+     "capacityBudgetKw": 50,
+     "servedOrder": 0,
+     "priorityReason": "Critical battery (18%) — near-empty vehicles are served first.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-09",
+     "battery": 31,
+     "target": 75,
+     "departure": "12:10",
+     "maxPower": 7,
+     "batteryPackKwh": 60,
+     "priority": 84,
+     "priorityFactors": {
+      "batteryUrgency": 0.8625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.5866666666666667
+     },
+     "power": 7,
+     "energyNeededKwh": 26.4,
+     "status": "charging",
+     "etaMinutesFromNow": 226,
+     "capacityBudgetKw": 50,
+     "servedOrder": 1,
+     "priorityReason": "Departure at 12:10 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-03",
+     "battery": 42,
+     "target": 80,
+     "departure": "11:30",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 76,
+     "priorityFactors": {
+      "batteryUrgency": 0.725,
+      "departureUrgency": 1,
+      "energyDeficit": 0.475
+     },
+     "power": 7,
+     "energyNeededKwh": 22,
+     "status": "charging",
+     "etaMinutesFromNow": 189,
+     "capacityBudgetKw": 50,
+     "servedOrder": 2,
+     "priorityReason": "Departure at 11:30 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-04",
+     "battery": 63,
+     "target": 90,
+     "departure": "14:20",
+     "maxPower": 11,
+     "batteryPackKwh": 82,
+     "priority": 61,
+     "priorityFactors": {
+      "batteryUrgency": 0.4625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.3
+     },
+     "power": 11,
+     "energyNeededKwh": 22.1,
+     "status": "charging",
+     "etaMinutesFromNow": 121,
+     "capacityBudgetKw": 50,
+     "servedOrder": 3,
+     "priorityReason": "Departure at 14:20 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-11",
+     "battery": 76,
+     "target": 90,
+     "departure": "16:45",
+     "maxPower": 7,
+     "batteryPackKwh": 75,
+     "priority": 51,
+     "priorityFactors": {
+      "batteryUrgency": 0.3,
+      "departureUrgency": 1,
+      "energyDeficit": 0.15555555555555556
+     },
+     "power": 7,
+     "energyNeededKwh": 10.5,
+     "status": "charging",
+     "etaMinutesFromNow": 90,
+     "capacityBudgetKw": 50,
+     "servedOrder": 4,
+     "priorityReason": "Departure at 16:45 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    }
+   ],
+   "availableChargingCapacityKw": 50,
+   "totalAllocatedKw": 43,
+   "chargingCount": 5,
+   "completedCount": 0
+  },
+  "derived": {
+   "gridImport": 43,
+   "totalDemand": 43,
+   "headroom": 7,
+   "utilization": 86,
+   "renewableShare": 28,
+   "solarSurplus": 0,
+   "cleanCharging": 17
+  }
+ },
+ {
+  "name": "demo-fleet@1439",
+  "vehicles": [
+   {
+    "id": "EV-07",
+    "battery": 18,
+    "target": 85,
+    "departure": "09:15",
+    "maxPower": 11,
+    "batteryPackKwh": 64
+   },
+   {
+    "id": "EV-03",
+    "battery": 42,
+    "target": 80,
+    "departure": "11:30",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-11",
+    "battery": 76,
+    "target": 90,
+    "departure": "16:45",
+    "maxPower": 7,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-04",
+    "battery": 63,
+    "target": 90,
+    "departure": "14:20",
+    "maxPower": 11,
+    "batteryPackKwh": 82
+   },
+   {
+    "id": "EV-09",
+    "battery": 31,
+    "target": 75,
+    "departure": "12:10",
+    "maxPower": 7,
+    "batteryPackKwh": 60
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 50,
+   "buildingDemand": 17,
+   "solarGeneration": 17
+  },
+  "nowMinutes": 1439,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-07",
+     "battery": 18,
+     "target": 85,
+     "departure": "09:15",
+     "maxPower": 11,
+     "batteryPackKwh": 64,
+     "priority": 95,
+     "priorityFactors": {
+      "batteryUrgency": 1,
+      "departureUrgency": 1,
+      "energyDeficit": 0.788235294117647
+     },
+     "power": 11,
+     "energyNeededKwh": 42.9,
+     "status": "charging",
+     "etaMinutesFromNow": 234,
+     "capacityBudgetKw": 50,
+     "servedOrder": 0,
+     "priorityReason": "Critical battery (18%) — near-empty vehicles are served first.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-09",
+     "battery": 31,
+     "target": 75,
+     "departure": "12:10",
+     "maxPower": 7,
+     "batteryPackKwh": 60,
+     "priority": 84,
+     "priorityFactors": {
+      "batteryUrgency": 0.8625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.5866666666666667
+     },
+     "power": 7,
+     "energyNeededKwh": 26.4,
+     "status": "charging",
+     "etaMinutesFromNow": 226,
+     "capacityBudgetKw": 50,
+     "servedOrder": 1,
+     "priorityReason": "Departure at 12:10 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-03",
+     "battery": 42,
+     "target": 80,
+     "departure": "11:30",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 76,
+     "priorityFactors": {
+      "batteryUrgency": 0.725,
+      "departureUrgency": 1,
+      "energyDeficit": 0.475
+     },
+     "power": 7,
+     "energyNeededKwh": 22,
+     "status": "charging",
+     "etaMinutesFromNow": 189,
+     "capacityBudgetKw": 50,
+     "servedOrder": 2,
+     "priorityReason": "Departure at 11:30 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-04",
+     "battery": 63,
+     "target": 90,
+     "departure": "14:20",
+     "maxPower": 11,
+     "batteryPackKwh": 82,
+     "priority": 61,
+     "priorityFactors": {
+      "batteryUrgency": 0.4625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.3
+     },
+     "power": 11,
+     "energyNeededKwh": 22.1,
+     "status": "charging",
+     "etaMinutesFromNow": 121,
+     "capacityBudgetKw": 50,
+     "servedOrder": 3,
+     "priorityReason": "Departure at 14:20 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-11",
+     "battery": 76,
+     "target": 90,
+     "departure": "16:45",
+     "maxPower": 7,
+     "batteryPackKwh": 75,
+     "priority": 51,
+     "priorityFactors": {
+      "batteryUrgency": 0.3,
+      "departureUrgency": 1,
+      "energyDeficit": 0.15555555555555556
+     },
+     "power": 7,
+     "energyNeededKwh": 10.5,
+     "status": "charging",
+     "etaMinutesFromNow": 90,
+     "capacityBudgetKw": 50,
+     "servedOrder": 4,
+     "priorityReason": "Departure at 16:45 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    }
+   ],
+   "availableChargingCapacityKw": 50,
+   "totalAllocatedKw": 43,
+   "chargingCount": 5,
+   "completedCount": 0
+  },
+  "derived": {
+   "gridImport": 43,
+   "totalDemand": 43,
+   "headroom": 7,
+   "utilization": 86,
+   "renewableShare": 28,
+   "solarSurplus": 0,
+   "cleanCharging": 17
+  }
+ },
+ {
+  "name": "tight-grid",
+  "vehicles": [
+   {
+    "id": "EV-01",
+    "battery": 54,
+    "target": 59,
+    "departure": "13:27",
+    "maxPower": 22,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-02",
+    "battery": 65,
+    "target": 72,
+    "departure": "04:40",
+    "maxPower": 7,
+    "batteryPackKwh": 60
+   },
+   {
+    "id": "EV-03",
+    "battery": 50,
+    "target": 52,
+    "departure": "04:13",
+    "maxPower": 22,
+    "batteryPackKwh": 82
+   },
+   {
+    "id": "EV-04",
+    "battery": 65,
+    "target": 66,
+    "departure": "04:21",
+    "maxPower": 11,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-05",
+    "battery": 29,
+    "target": 88,
+    "departure": "11:53",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-06",
+    "battery": 23,
+    "target": 97,
+    "departure": "10:26",
+    "maxPower": 22,
+    "batteryPackKwh": 60
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 30,
+   "buildingDemand": 28,
+   "solarGeneration": 0
+  },
+  "nowMinutes": 600,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-06",
+     "battery": 23,
+     "target": 97,
+     "departure": "10:26",
+     "maxPower": 22,
+     "batteryPackKwh": 60,
+     "priority": 93,
+     "priorityFactors": {
+      "batteryUrgency": 0.9625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.7628865979381443
+     },
+     "power": 0.4,
+     "energyNeededKwh": 44.4,
+     "status": "throttled",
+     "etaMinutesFromNow": 6660,
+     "capacityBudgetKw": 2,
+     "servedOrder": 0,
+     "priorityReason": "Departure at 10:26 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 0.4 kW of 22 kW — the remaining 2 kW of headroom is shared with 5 other vehicles, weighted by priority.",
+     "notes": [
+      "At 0.4 kW it will not reach 97% before its 10:26 departure."
+     ]
+    },
+    {
+     "id": "EV-05",
+     "battery": 29,
+     "target": 88,
+     "departure": "11:53",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 87,
+     "priorityFactors": {
+      "batteryUrgency": 0.8875,
+      "departureUrgency": 1,
+      "energyDeficit": 0.6704545454545454
+     },
+     "power": 0.4,
+     "energyNeededKwh": 34.2,
+     "status": "throttled",
+     "etaMinutesFromNow": 5133,
+     "capacityBudgetKw": 2,
+     "servedOrder": 1,
+     "priorityReason": "Departure at 11:53 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 0.4 kW of 7 kW — the remaining 2 kW of headroom is shared with 5 other vehicles, weighted by priority.",
+     "notes": [
+      "At 0.4 kW it will not reach 88% before its 11:53 departure."
+     ]
+    },
+    {
+     "id": "EV-03",
+     "battery": 50,
+     "target": 52,
+     "departure": "04:13",
+     "maxPower": 22,
+     "batteryPackKwh": 82,
+     "priority": 61,
+     "priorityFactors": {
+      "batteryUrgency": 0.625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.038461538461538464
+     },
+     "power": 0.3,
+     "energyNeededKwh": 1.6,
+     "status": "throttled",
+     "etaMinutesFromNow": 328,
+     "capacityBudgetKw": 2,
+     "servedOrder": 2,
+     "priorityReason": "Departure at 04:13 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 0.3 kW of 22 kW — the remaining 2 kW of headroom is shared with 5 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-02",
+     "battery": 65,
+     "target": 72,
+     "departure": "04:40",
+     "maxPower": 7,
+     "batteryPackKwh": 60,
+     "priority": 55,
+     "priorityFactors": {
+      "batteryUrgency": 0.4375,
+      "departureUrgency": 1,
+      "energyDeficit": 0.09722222222222222
+     },
+     "power": 0.2,
+     "energyNeededKwh": 4.2,
+     "status": "throttled",
+     "etaMinutesFromNow": 1260,
+     "capacityBudgetKw": 2,
+     "servedOrder": 3,
+     "priorityReason": "Departure at 04:40 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 0.2 kW of 7 kW — the remaining 2 kW of headroom is shared with 5 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-04",
+     "battery": 65,
+     "target": 66,
+     "departure": "04:21",
+     "maxPower": 11,
+     "batteryPackKwh": 75,
+     "priority": 53,
+     "priorityFactors": {
+      "batteryUrgency": 0.4375,
+      "departureUrgency": 1,
+      "energyDeficit": 0.015151515151515152
+     },
+     "power": 0.2,
+     "energyNeededKwh": 0.8,
+     "status": "throttled",
+     "etaMinutesFromNow": 225,
+     "capacityBudgetKw": 2,
+     "servedOrder": 4,
+     "priorityReason": "Departure at 04:21 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 0.2 kW of 11 kW — the remaining 2 kW of headroom is shared with 5 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-01",
+     "battery": 54,
+     "target": 59,
+     "departure": "13:27",
+     "maxPower": 22,
+     "batteryPackKwh": 58,
+     "priority": 45,
+     "priorityFactors": {
+      "batteryUrgency": 0.575,
+      "departureUrgency": 0.56875,
+      "energyDeficit": 0.0847457627118644
+     },
+     "power": 0.2,
+     "energyNeededKwh": 2.9,
+     "status": "throttled",
+     "etaMinutesFromNow": 870,
+     "capacityBudgetKw": 2,
+     "servedOrder": 5,
+     "priorityReason": "Comfortable margins — battery 54%, departs 13:27.",
+     "powerReason": "Charging reduced to 0.2 kW of 22 kW — the remaining 2 kW of headroom is shared with 5 other vehicles, weighted by priority.",
+     "notes": [
+      "At 0.2 kW it will not reach 59% before its 13:27 departure."
+     ]
+    }
+   ],
+   "availableChargingCapacityKw": 2,
+   "totalAllocatedKw": 1.7,
+   "chargingCount": 6,
+   "completedCount": 0
+  },
+  "derived": {
+   "gridImport": 29.7,
+   "totalDemand": 29.7,
+   "headroom": 0.3000000000000007,
+   "utilization": 99,
+   "renewableShare": 0,
+   "solarSurplus": 0,
+   "cleanCharging": 0
+  }
+ },
+ {
+  "name": "solar-surplus",
+  "vehicles": [
+   {
+    "id": "EV-01",
+    "battery": 54,
+    "target": 59,
+    "departure": "13:27",
+    "maxPower": 22,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-02",
+    "battery": 65,
+    "target": 72,
+    "departure": "04:40",
+    "maxPower": 7,
+    "batteryPackKwh": 60
+   },
+   {
+    "id": "EV-03",
+    "battery": 50,
+    "target": 52,
+    "departure": "04:13",
+    "maxPower": 22,
+    "batteryPackKwh": 82
+   },
+   {
+    "id": "EV-04",
+    "battery": 65,
+    "target": 66,
+    "departure": "04:21",
+    "maxPower": 11,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-05",
+    "battery": 29,
+    "target": 88,
+    "departure": "11:53",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-06",
+    "battery": 23,
+    "target": 97,
+    "departure": "10:26",
+    "maxPower": 22,
+    "batteryPackKwh": 60
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 50,
+   "buildingDemand": 10,
+   "solarGeneration": 34
+  },
+  "nowMinutes": 720,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-06",
+     "battery": 23,
+     "target": 97,
+     "departure": "10:26",
+     "maxPower": 22,
+     "batteryPackKwh": 60,
+     "priority": 93,
+     "priorityFactors": {
+      "batteryUrgency": 0.9625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.7628865979381443
+     },
+     "power": 22,
+     "energyNeededKwh": 44.4,
+     "status": "charging",
+     "etaMinutesFromNow": 121,
+     "capacityBudgetKw": 74,
+     "servedOrder": 0,
+     "priorityReason": "Departure at 10:26 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 22 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-05",
+     "battery": 29,
+     "target": 88,
+     "departure": "11:53",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 87,
+     "priorityFactors": {
+      "batteryUrgency": 0.8875,
+      "departureUrgency": 1,
+      "energyDeficit": 0.6704545454545454
+     },
+     "power": 7,
+     "energyNeededKwh": 34.2,
+     "status": "charging",
+     "etaMinutesFromNow": 293,
+     "capacityBudgetKw": 74,
+     "servedOrder": 1,
+     "priorityReason": "Departure at 11:53 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-03",
+     "battery": 50,
+     "target": 52,
+     "departure": "04:13",
+     "maxPower": 22,
+     "batteryPackKwh": 82,
+     "priority": 61,
+     "priorityFactors": {
+      "batteryUrgency": 0.625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.038461538461538464
+     },
+     "power": 22,
+     "energyNeededKwh": 1.6,
+     "status": "charging",
+     "etaMinutesFromNow": 4,
+     "capacityBudgetKw": 74,
+     "servedOrder": 2,
+     "priorityReason": "Departure at 04:13 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 22 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-02",
+     "battery": 65,
+     "target": 72,
+     "departure": "04:40",
+     "maxPower": 7,
+     "batteryPackKwh": 60,
+     "priority": 55,
+     "priorityFactors": {
+      "batteryUrgency": 0.4375,
+      "departureUrgency": 1,
+      "energyDeficit": 0.09722222222222222
+     },
+     "power": 7,
+     "energyNeededKwh": 4.2,
+     "status": "charging",
+     "etaMinutesFromNow": 36,
+     "capacityBudgetKw": 74,
+     "servedOrder": 3,
+     "priorityReason": "Departure at 04:40 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-01",
+     "battery": 54,
+     "target": 59,
+     "departure": "13:27",
+     "maxPower": 22,
+     "batteryPackKwh": 58,
+     "priority": 54,
+     "priorityFactors": {
+      "batteryUrgency": 0.575,
+      "departureUrgency": 0.81875,
+      "energyDeficit": 0.0847457627118644
+     },
+     "power": 8,
+     "energyNeededKwh": 2.9,
+     "status": "throttled",
+     "etaMinutesFromNow": 22,
+     "capacityBudgetKw": 74,
+     "servedOrder": 4,
+     "priorityReason": "Departure at 13:27 is approaching — needs its charge soon.",
+     "powerReason": "Charging reduced to 8 kW of 22 kW — the remaining 16 kW of headroom is shared with 1 other vehicle, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-04",
+     "battery": 65,
+     "target": 66,
+     "departure": "04:21",
+     "maxPower": 11,
+     "batteryPackKwh": 75,
+     "priority": 53,
+     "priorityFactors": {
+      "batteryUrgency": 0.4375,
+      "departureUrgency": 1,
+      "energyDeficit": 0.015151515151515152
+     },
+     "power": 7.9,
+     "energyNeededKwh": 0.8,
+     "status": "throttled",
+     "etaMinutesFromNow": 6,
+     "capacityBudgetKw": 74,
+     "servedOrder": 5,
+     "priorityReason": "Departure at 04:21 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 7.9 kW of 11 kW — the remaining 16 kW of headroom is shared with 1 other vehicle, weighted by priority.",
+     "notes": []
+    }
+   ],
+   "availableChargingCapacityKw": 74,
+   "totalAllocatedKw": 73.9,
+   "chargingCount": 6,
+   "completedCount": 0
+  },
+  "derived": {
+   "gridImport": 49.900000000000006,
+   "totalDemand": 49.900000000000006,
+   "headroom": 0.09999999999999432,
+   "utilization": 100,
+   "renewableShare": 41,
+   "solarSurplus": 24,
+   "cleanCharging": 34
+  }
+ },
+ {
+  "name": "zero-capacity",
+  "vehicles": [
+   {
+    "id": "EV-01",
+    "battery": 54,
+    "target": 59,
+    "departure": "13:27",
+    "maxPower": 22,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-02",
+    "battery": 65,
+    "target": 72,
+    "departure": "04:40",
+    "maxPower": 7,
+    "batteryPackKwh": 60
+   },
+   {
+    "id": "EV-03",
+    "battery": 50,
+    "target": 52,
+    "departure": "04:13",
+    "maxPower": 22,
+    "batteryPackKwh": 82
+   },
+   {
+    "id": "EV-04",
+    "battery": 65,
+    "target": 66,
+    "departure": "04:21",
+    "maxPower": 11,
+    "batteryPackKwh": 75
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 30,
+   "buildingDemand": 40,
+   "solarGeneration": 0
+  },
+  "nowMinutes": 720,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-03",
+     "battery": 50,
+     "target": 52,
+     "departure": "04:13",
+     "maxPower": 22,
+     "batteryPackKwh": 82,
+     "priority": 61,
+     "priorityFactors": {
+      "batteryUrgency": 0.625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.038461538461538464
+     },
+     "power": 0,
+     "energyNeededKwh": 1.6,
+     "status": "waiting",
+     "etaMinutesFromNow": null,
+     "capacityBudgetKw": 0,
+     "servedOrder": -1,
+     "priorityReason": "Departure at 04:13 is close and there may not be enough time to finish charging.",
+     "powerReason": "No charging capacity available — building demand is using the entire grid budget. Charging starts when headroom returns.",
+     "notes": []
+    },
+    {
+     "id": "EV-02",
+     "battery": 65,
+     "target": 72,
+     "departure": "04:40",
+     "maxPower": 7,
+     "batteryPackKwh": 60,
+     "priority": 55,
+     "priorityFactors": {
+      "batteryUrgency": 0.4375,
+      "departureUrgency": 1,
+      "energyDeficit": 0.09722222222222222
+     },
+     "power": 0,
+     "energyNeededKwh": 4.2,
+     "status": "waiting",
+     "etaMinutesFromNow": null,
+     "capacityBudgetKw": 0,
+     "servedOrder": -1,
+     "priorityReason": "Departure at 04:40 is close and there may not be enough time to finish charging.",
+     "powerReason": "No charging capacity available — building demand is using the entire grid budget. Charging starts when headroom returns.",
+     "notes": []
+    },
+    {
+     "id": "EV-01",
+     "battery": 54,
+     "target": 59,
+     "departure": "13:27",
+     "maxPower": 22,
+     "batteryPackKwh": 58,
+     "priority": 54,
+     "priorityFactors": {
+      "batteryUrgency": 0.575,
+      "departureUrgency": 0.81875,
+      "energyDeficit": 0.0847457627118644
+     },
+     "power": 0,
+     "energyNeededKwh": 2.9,
+     "status": "waiting",
+     "etaMinutesFromNow": null,
+     "capacityBudgetKw": 0,
+     "servedOrder": -1,
+     "priorityReason": "Departure at 13:27 is approaching — needs its charge soon.",
+     "powerReason": "No charging capacity available — building demand is using the entire grid budget. Charging starts when headroom returns.",
+     "notes": []
+    },
+    {
+     "id": "EV-04",
+     "battery": 65,
+     "target": 66,
+     "departure": "04:21",
+     "maxPower": 11,
+     "batteryPackKwh": 75,
+     "priority": 53,
+     "priorityFactors": {
+      "batteryUrgency": 0.4375,
+      "departureUrgency": 1,
+      "energyDeficit": 0.015151515151515152
+     },
+     "power": 0,
+     "energyNeededKwh": 0.8,
+     "status": "waiting",
+     "etaMinutesFromNow": null,
+     "capacityBudgetKw": 0,
+     "servedOrder": -1,
+     "priorityReason": "Departure at 04:21 is close and there may not be enough time to finish charging.",
+     "powerReason": "No charging capacity available — building demand is using the entire grid budget. Charging starts when headroom returns.",
+     "notes": []
+    }
+   ],
+   "availableChargingCapacityKw": 0,
+   "totalAllocatedKw": 0,
+   "chargingCount": 0,
+   "completedCount": 0
+  },
+  "derived": {
+   "gridImport": 40,
+   "totalDemand": 40,
+   "headroom": 0,
+   "utilization": 133,
+   "renewableShare": 0,
+   "solarSurplus": 0,
+   "cleanCharging": 0
+  }
+ },
+ {
+  "name": "random-fleet-normal",
+  "vehicles": [
+   {
+    "id": "EV-01",
+    "battery": 54,
+    "target": 59,
+    "departure": "13:27",
+    "maxPower": 22,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-02",
+    "battery": 65,
+    "target": 72,
+    "departure": "04:40",
+    "maxPower": 7,
+    "batteryPackKwh": 60
+   },
+   {
+    "id": "EV-03",
+    "battery": 50,
+    "target": 52,
+    "departure": "04:13",
+    "maxPower": 22,
+    "batteryPackKwh": 82
+   },
+   {
+    "id": "EV-04",
+    "battery": 65,
+    "target": 66,
+    "departure": "04:21",
+    "maxPower": 11,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-05",
+    "battery": 29,
+    "target": 88,
+    "departure": "11:53",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-06",
+    "battery": 23,
+    "target": 97,
+    "departure": "10:26",
+    "maxPower": 22,
+    "batteryPackKwh": 60
+   },
+   {
+    "id": "EV-07",
+    "battery": 84,
+    "target": 82,
+    "departure": "23:43",
+    "maxPower": 7,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-08",
+    "battery": 42,
+    "target": 82,
+    "departure": "00:28",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 50,
+   "buildingDemand": 17,
+   "solarGeneration": 17
+  },
+  "nowMinutes": 640,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-06",
+     "battery": 23,
+     "target": 97,
+     "departure": "10:26",
+     "maxPower": 22,
+     "batteryPackKwh": 60,
+     "priority": 93,
+     "priorityFactors": {
+      "batteryUrgency": 0.9625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.7628865979381443
+     },
+     "power": 22,
+     "energyNeededKwh": 44.4,
+     "status": "charging",
+     "etaMinutesFromNow": 121,
+     "capacityBudgetKw": 50,
+     "servedOrder": 0,
+     "priorityReason": "Departure at 10:26 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 22 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-05",
+     "battery": 29,
+     "target": 88,
+     "departure": "11:53",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 87,
+     "priorityFactors": {
+      "batteryUrgency": 0.8875,
+      "departureUrgency": 1,
+      "energyDeficit": 0.6704545454545454
+     },
+     "power": 7,
+     "energyNeededKwh": 34.2,
+     "status": "charging",
+     "etaMinutesFromNow": 293,
+     "capacityBudgetKw": 50,
+     "servedOrder": 1,
+     "priorityReason": "Departure at 11:53 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": [
+      "At 7 kW it will not reach 88% before its 11:53 departure."
+     ]
+    },
+    {
+     "id": "EV-08",
+     "battery": 42,
+     "target": 82,
+     "departure": "00:28",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 76,
+     "priorityFactors": {
+      "batteryUrgency": 0.725,
+      "departureUrgency": 1,
+      "energyDeficit": 0.4878048780487805
+     },
+     "power": 7,
+     "energyNeededKwh": 23.2,
+     "status": "charging",
+     "etaMinutesFromNow": 199,
+     "capacityBudgetKw": 50,
+     "servedOrder": 2,
+     "priorityReason": "Departure at 00:28 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 7 kW rate — grid headroom allowed it.",
+     "notes": []
+    },
+    {
+     "id": "EV-03",
+     "battery": 50,
+     "target": 52,
+     "departure": "04:13",
+     "maxPower": 22,
+     "batteryPackKwh": 82,
+     "priority": 61,
+     "priorityFactors": {
+      "batteryUrgency": 0.625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.038461538461538464
+     },
+     "power": 3.9,
+     "energyNeededKwh": 1.6,
+     "status": "throttled",
+     "etaMinutesFromNow": 25,
+     "capacityBudgetKw": 50,
+     "servedOrder": 3,
+     "priorityReason": "Departure at 04:13 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 3.9 kW of 22 kW — the remaining 14 kW of headroom is shared with 3 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-02",
+     "battery": 65,
+     "target": 72,
+     "departure": "04:40",
+     "maxPower": 7,
+     "batteryPackKwh": 60,
+     "priority": 55,
+     "priorityFactors": {
+      "batteryUrgency": 0.4375,
+      "departureUrgency": 1,
+      "energyDeficit": 0.09722222222222222
+     },
+     "power": 3.5,
+     "energyNeededKwh": 4.2,
+     "status": "throttled",
+     "etaMinutesFromNow": 72,
+     "capacityBudgetKw": 50,
+     "servedOrder": 4,
+     "priorityReason": "Departure at 04:40 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 3.5 kW of 7 kW — the remaining 14 kW of headroom is shared with 3 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-04",
+     "battery": 65,
+     "target": 66,
+     "departure": "04:21",
+     "maxPower": 11,
+     "batteryPackKwh": 75,
+     "priority": 53,
+     "priorityFactors": {
+      "batteryUrgency": 0.4375,
+      "departureUrgency": 1,
+      "energyDeficit": 0.015151515151515152
+     },
+     "power": 3.4,
+     "energyNeededKwh": 0.8,
+     "status": "throttled",
+     "etaMinutesFromNow": 13,
+     "capacityBudgetKw": 50,
+     "servedOrder": 5,
+     "priorityReason": "Departure at 04:21 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 3.4 kW of 11 kW — the remaining 14 kW of headroom is shared with 3 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-01",
+     "battery": 54,
+     "target": 59,
+     "departure": "13:27",
+     "maxPower": 22,
+     "batteryPackKwh": 58,
+     "priority": 48,
+     "priorityFactors": {
+      "batteryUrgency": 0.575,
+      "departureUrgency": 0.6520833333333333,
+      "energyDeficit": 0.0847457627118644
+     },
+     "power": 3,
+     "energyNeededKwh": 2.9,
+     "status": "throttled",
+     "etaMinutesFromNow": 58,
+     "capacityBudgetKw": 50,
+     "servedOrder": 6,
+     "priorityReason": "Departure at 13:27 is approaching — needs its charge soon.",
+     "powerReason": "Charging reduced to 3 kW of 22 kW — the remaining 14 kW of headroom is shared with 3 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-07",
+     "battery": 84,
+     "target": 82,
+     "departure": "23:43",
+     "maxPower": 7,
+     "batteryPackKwh": 75,
+     "priority": 8,
+     "priorityFactors": {
+      "batteryUrgency": 0.2,
+      "departureUrgency": 0,
+      "energyDeficit": 0
+     },
+     "power": 0,
+     "energyNeededKwh": 0,
+     "status": "completed",
+     "etaMinutesFromNow": null,
+     "capacityBudgetKw": 50,
+     "servedOrder": -1,
+     "priorityReason": "Target reached — battery 84% ≥ target 82%.",
+     "powerReason": "Charging complete — no energy required.",
+     "notes": []
+    }
+   ],
+   "availableChargingCapacityKw": 50,
+   "totalAllocatedKw": 49.8,
+   "chargingCount": 7,
+   "completedCount": 1
+  },
+  "derived": {
+   "gridImport": 49.8,
+   "totalDemand": 49.8,
+   "headroom": 0.20000000000000284,
+   "utilization": 100,
+   "renewableShare": 25,
+   "solarSurplus": 0,
+   "cleanCharging": 17
+  }
+ },
+ {
+  "name": "random-fleet-scarce",
+  "vehicles": [
+   {
+    "id": "EV-01",
+    "battery": 54,
+    "target": 59,
+    "departure": "13:27",
+    "maxPower": 22,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-02",
+    "battery": 65,
+    "target": 72,
+    "departure": "04:40",
+    "maxPower": 7,
+    "batteryPackKwh": 60
+   },
+   {
+    "id": "EV-03",
+    "battery": 50,
+    "target": 52,
+    "departure": "04:13",
+    "maxPower": 22,
+    "batteryPackKwh": 82
+   },
+   {
+    "id": "EV-04",
+    "battery": 65,
+    "target": 66,
+    "departure": "04:21",
+    "maxPower": 11,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-05",
+    "battery": 29,
+    "target": 88,
+    "departure": "11:53",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   },
+   {
+    "id": "EV-06",
+    "battery": 23,
+    "target": 97,
+    "departure": "10:26",
+    "maxPower": 22,
+    "batteryPackKwh": 60
+   },
+   {
+    "id": "EV-07",
+    "battery": 84,
+    "target": 82,
+    "departure": "23:43",
+    "maxPower": 7,
+    "batteryPackKwh": 75
+   },
+   {
+    "id": "EV-08",
+    "battery": 42,
+    "target": 82,
+    "departure": "00:28",
+    "maxPower": 7,
+    "batteryPackKwh": 58
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 35,
+   "buildingDemand": 30,
+   "solarGeneration": 2
+  },
+  "nowMinutes": 900,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-06",
+     "battery": 23,
+     "target": 97,
+     "departure": "10:26",
+     "maxPower": 22,
+     "batteryPackKwh": 60,
+     "priority": 93,
+     "priorityFactors": {
+      "batteryUrgency": 0.9625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.7628865979381443
+     },
+     "power": 1.3,
+     "energyNeededKwh": 44.4,
+     "status": "throttled",
+     "etaMinutesFromNow": 2049,
+     "capacityBudgetKw": 7,
+     "servedOrder": 0,
+     "priorityReason": "Departure at 10:26 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 1.3 kW of 22 kW — the remaining 7 kW of headroom is shared with 6 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-05",
+     "battery": 29,
+     "target": 88,
+     "departure": "11:53",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 87,
+     "priorityFactors": {
+      "batteryUrgency": 0.8875,
+      "departureUrgency": 1,
+      "energyDeficit": 0.6704545454545454
+     },
+     "power": 1.2,
+     "energyNeededKwh": 34.2,
+     "status": "throttled",
+     "etaMinutesFromNow": 1711,
+     "capacityBudgetKw": 7,
+     "servedOrder": 1,
+     "priorityReason": "Departure at 11:53 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 1.2 kW of 7 kW — the remaining 7 kW of headroom is shared with 6 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-08",
+     "battery": 42,
+     "target": 82,
+     "departure": "00:28",
+     "maxPower": 7,
+     "batteryPackKwh": 58,
+     "priority": 76,
+     "priorityFactors": {
+      "batteryUrgency": 0.725,
+      "departureUrgency": 1,
+      "energyDeficit": 0.4878048780487805
+     },
+     "power": 1,
+     "energyNeededKwh": 23.2,
+     "status": "throttled",
+     "etaMinutesFromNow": 1392,
+     "capacityBudgetKw": 7,
+     "servedOrder": 2,
+     "priorityReason": "Departure at 00:28 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 1 kW of 7 kW — the remaining 7 kW of headroom is shared with 6 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-03",
+     "battery": 50,
+     "target": 52,
+     "departure": "04:13",
+     "maxPower": 22,
+     "batteryPackKwh": 82,
+     "priority": 61,
+     "priorityFactors": {
+      "batteryUrgency": 0.625,
+      "departureUrgency": 1,
+      "energyDeficit": 0.038461538461538464
+     },
+     "power": 0.8,
+     "energyNeededKwh": 1.6,
+     "status": "throttled",
+     "etaMinutesFromNow": 123,
+     "capacityBudgetKw": 7,
+     "servedOrder": 3,
+     "priorityReason": "Departure at 04:13 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 0.8 kW of 22 kW — the remaining 7 kW of headroom is shared with 6 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-01",
+     "battery": 54,
+     "target": 59,
+     "departure": "13:27",
+     "maxPower": 22,
+     "batteryPackKwh": 58,
+     "priority": 60,
+     "priorityFactors": {
+      "batteryUrgency": 0.575,
+      "departureUrgency": 1,
+      "energyDeficit": 0.0847457627118644
+     },
+     "power": 0.8,
+     "energyNeededKwh": 2.9,
+     "status": "throttled",
+     "etaMinutesFromNow": 218,
+     "capacityBudgetKw": 7,
+     "servedOrder": 4,
+     "priorityReason": "Departure at 13:27 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 0.8 kW of 22 kW — the remaining 7 kW of headroom is shared with 6 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-02",
+     "battery": 65,
+     "target": 72,
+     "departure": "04:40",
+     "maxPower": 7,
+     "batteryPackKwh": 60,
+     "priority": 55,
+     "priorityFactors": {
+      "batteryUrgency": 0.4375,
+      "departureUrgency": 1,
+      "energyDeficit": 0.09722222222222222
+     },
+     "power": 0.7,
+     "energyNeededKwh": 4.2,
+     "status": "throttled",
+     "etaMinutesFromNow": 360,
+     "capacityBudgetKw": 7,
+     "servedOrder": 5,
+     "priorityReason": "Departure at 04:40 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 0.7 kW of 7 kW — the remaining 7 kW of headroom is shared with 6 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-04",
+     "battery": 65,
+     "target": 66,
+     "departure": "04:21",
+     "maxPower": 11,
+     "batteryPackKwh": 75,
+     "priority": 53,
+     "priorityFactors": {
+      "batteryUrgency": 0.4375,
+      "departureUrgency": 1,
+      "energyDeficit": 0.015151515151515152
+     },
+     "power": 0.7,
+     "energyNeededKwh": 0.8,
+     "status": "throttled",
+     "etaMinutesFromNow": 64,
+     "capacityBudgetKw": 7,
+     "servedOrder": 6,
+     "priorityReason": "Departure at 04:21 is close and there may not be enough time to finish charging.",
+     "powerReason": "Charging reduced to 0.7 kW of 11 kW — the remaining 7 kW of headroom is shared with 6 other vehicles, weighted by priority.",
+     "notes": []
+    },
+    {
+     "id": "EV-07",
+     "battery": 84,
+     "target": 82,
+     "departure": "23:43",
+     "maxPower": 7,
+     "batteryPackKwh": 75,
+     "priority": 8,
+     "priorityFactors": {
+      "batteryUrgency": 0.2,
+      "departureUrgency": 0,
+      "energyDeficit": 0
+     },
+     "power": 0,
+     "energyNeededKwh": 0,
+     "status": "completed",
+     "etaMinutesFromNow": null,
+     "capacityBudgetKw": 7,
+     "servedOrder": -1,
+     "priorityReason": "Target reached — battery 84% ≥ target 82%.",
+     "powerReason": "Charging complete — no energy required.",
+     "notes": []
+    }
+   ],
+   "availableChargingCapacityKw": 7,
+   "totalAllocatedKw": 6.5,
+   "chargingCount": 7,
+   "completedCount": 1
+  },
+  "derived": {
+   "gridImport": 34.5,
+   "totalDemand": 34.5,
+   "headroom": 0.5,
+   "utilization": 99,
+   "renewableShare": 5,
+   "solarSurplus": 0,
+   "cleanCharging": 2
+  }
+ },
+ {
+  "name": "malformed-departure",
+  "vehicles": [
+   {
+    "id": "EV-X",
+    "battery": 40,
+    "target": 90,
+    "departure": "25:99",
+    "maxPower": 11,
+    "batteryPackKwh": 60
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 50,
+   "buildingDemand": 10,
+   "solarGeneration": 5
+  },
+  "nowMinutes": 600,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-X",
+     "battery": 40,
+     "target": 90,
+     "departure": "25:99",
+     "maxPower": 11,
+     "batteryPackKwh": 60,
+     "priority": 79,
+     "priorityFactors": {
+      "batteryUrgency": 0.75,
+      "departureUrgency": 1,
+      "energyDeficit": 0.5555555555555556
+     },
+     "power": 11,
+     "energyNeededKwh": 30,
+     "status": "charging",
+     "etaMinutesFromNow": 164,
+     "capacityBudgetKw": 45,
+     "servedOrder": 0,
+     "priorityReason": "Departure at 25:99 is close and there may not be enough time to finish charging.",
+     "powerReason": "Full 11 kW rate — grid headroom allowed it.",
+     "notes": [
+      "At 11 kW it will not reach 90% before its 25:99 departure."
+     ]
+    }
+   ],
+   "availableChargingCapacityKw": 45,
+   "totalAllocatedKw": 11,
+   "chargingCount": 1,
+   "completedCount": 0
+  },
+  "derived": {
+   "gridImport": 16,
+   "totalDemand": 16,
+   "headroom": 34,
+   "utilization": 32,
+   "renewableShare": 24,
+   "solarSurplus": 0,
+   "cleanCharging": 5
+  }
+ },
+ {
+  "name": "empty-fleet",
+  "vehicles": [],
+  "inputs": {
+   "gridCapacity": 50,
+   "buildingDemand": 17,
+   "solarGeneration": 17
+  },
+  "nowMinutes": 600,
+  "allocation": {
+   "allocations": [],
+   "availableChargingCapacityKw": 50,
+   "totalAllocatedKw": 0,
+   "chargingCount": 0,
+   "completedCount": 0
+  },
+  "derived": {
+   "gridImport": 0,
+   "totalDemand": 0,
+   "headroom": 50,
+   "utilization": 0,
+   "renewableShare": 100,
+   "solarSurplus": 0,
+   "cleanCharging": 0
+  }
+ },
+ {
+  "name": "all-completed",
+  "vehicles": [
+   {
+    "id": "EV-A",
+    "battery": 90,
+    "target": 80,
+    "departure": "18:00",
+    "maxPower": 11,
+    "batteryPackKwh": 60
+   },
+   {
+    "id": "EV-B",
+    "battery": 80,
+    "target": 80,
+    "departure": "18:00",
+    "maxPower": 11,
+    "batteryPackKwh": 60
+   }
+  ],
+  "inputs": {
+   "gridCapacity": 50,
+   "buildingDemand": 17,
+   "solarGeneration": 17
+  },
+  "nowMinutes": 600,
+  "allocation": {
+   "allocations": [
+    {
+     "id": "EV-B",
+     "battery": 80,
+     "target": 80,
+     "departure": "18:00",
+     "maxPower": 11,
+     "batteryPackKwh": 60,
+     "priority": 10,
+     "priorityFactors": {
+      "batteryUrgency": 0.25,
+      "departureUrgency": 0,
+      "energyDeficit": 0
+     },
+     "power": 0,
+     "energyNeededKwh": 0,
+     "status": "completed",
+     "etaMinutesFromNow": null,
+     "capacityBudgetKw": 50,
+     "servedOrder": -1,
+     "priorityReason": "Target reached — battery 80% ≥ target 80%.",
+     "powerReason": "Charging complete — no energy required.",
+     "notes": []
+    },
+    {
+     "id": "EV-A",
+     "battery": 90,
+     "target": 80,
+     "departure": "18:00",
+     "maxPower": 11,
+     "batteryPackKwh": 60,
+     "priority": 5,
+     "priorityFactors": {
+      "batteryUrgency": 0.125,
+      "departureUrgency": 0,
+      "energyDeficit": 0
+     },
+     "power": 0,
+     "energyNeededKwh": 0,
+     "status": "completed",
+     "etaMinutesFromNow": null,
+     "capacityBudgetKw": 50,
+     "servedOrder": -1,
+     "priorityReason": "Target reached — battery 90% ≥ target 80%.",
+     "powerReason": "Charging complete — no energy required.",
+     "notes": []
+    }
+   ],
+   "availableChargingCapacityKw": 50,
+   "totalAllocatedKw": 0,
+   "chargingCount": 0,
+   "completedCount": 2
+  },
+  "derived": {
+   "gridImport": 0,
+   "totalDemand": 0,
+   "headroom": 50,
+   "utilization": 0,
+   "renewableShare": 100,
+   "solarSurplus": 0,
+   "cleanCharging": 0
+  }
+ }
+]

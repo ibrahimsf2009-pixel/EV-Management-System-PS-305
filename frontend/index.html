@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GridPulse</title>
+    <meta name="description" content="Smart EV charging and localized grid management." />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="control-grid">
+    <main>
+      <header class="site-header">
+        <div class="header-inner">
+          <div style="display: flex; align-items: center; gap: 2rem">
+            <button type="button" class="brand" data-nav="dashboard" aria-label="Open dashboard">
+              <span class="brand-mark">
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                  <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" />
+                </svg>
+              </span>
+              <span class="brand-name">Grid<span class="accent">Pulse</span></span>
+            </button>
+            <nav class="main-nav" aria-label="Main navigation" id="main-nav">
+              <button type="button" class="btn btn-ghost btn-sm" data-nav="dashboard">Dashboard</button>
+              <button type="button" class="btn btn-ghost btn-sm" data-nav="vehicles">Vehicles</button>
+              <button type="button" class="btn btn-ghost btn-sm" data-nav="energy">Energy</button>
+              <button type="button" class="btn btn-ghost btn-sm" data-nav="analytics">Analytics</button>
+              <button type="button" class="btn btn-ghost btn-sm" data-nav="settings">Settings</button>
+            </nav>
+          </div>
+          <div class="system-status">
+            <span class="pulse-ring"></span>
+            <span class="label">System operational</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="page">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Localized cluster // GP-01</p>
+            <h1 class="page-title" id="page-title">Live Energy Operations</h1>
+          </div>
+          <div class="telemetry-line">
+            <span class="muted">Live telemetry</span>
+            <span class="rule"></span>
+            <span class="live">Synced</span>
+          </div>
+        </div>
+
+        <!-- ══ DASHBOARD VIEW ═══════════════════════════════════════════ -->
+        <section class="view-section active" id="view-dashboard">
+          <div class="metrics" id="metrics"></div>
+
+          <div class="alert hidden" id="constraint-alert" role="alert">
+            <div class="alert-main">
+              <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+              <div>
+                <p class="alert-title">Grid constraint detected</p>
+                <p class="alert-sub" id="constraint-sub"></p>
+              </div>
+            </div>
+            <span class="alert-util" id="constraint-util"></span>
+          </div>
+
+          <div class="row">
+            <section class="panel">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Real-time topology</p>
+                    <h2>Live Energy Flow</h2>
+                  </div>
+                </div>
+                <span class="flow-live"><span class="pulse-ring"></span> Live</span>
+              </div>
+              <div class="flow-stage" id="flow-stage"></div>
+            </section>
+          </div>
+
+          <div class="row grid-2">
+            <section class="panel-strong">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Rolling 40-minute window</p>
+                    <h2>Power Demand</h2>
+                  </div>
+                </div>
+                <span class="action">kW</span>
+              </div>
+              <div class="chart-body"><canvas id="chart" aria-label="Power demand chart"></canvas></div>
+            </section>
+            <section class="panel-strong" style="display: flex; flex-direction: column; overflow: hidden">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Priority queue</p>
+                    <h2>Active Vehicles</h2>
+                  </div>
+                </div>
+                <span class="action primary" id="queue-count"></span>
+              </div>
+              <div class="queue-list" id="vehicle-queue"></div>
+            </section>
+          </div>
+
+          <div class="row grid-2">
+            <section class="panel">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Transparent decision engine</p>
+                    <h2>Smart Allocation</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="smart-grid" id="smart-allocation"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M2 14h4"/><path d="M10 8h4"/><path d="M18 16h4"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Adaptive inputs</p>
+                    <h2>Simulation Controls</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="controls-body">
+                <div class="scenario-row" id="scenario-row"></div>
+                <div id="controls"></div>
+                <div class="vehicle-actions">
+                  <button type="button" class="btn btn-default" id="add-vehicle-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                    Add EV
+                  </button>
+                  <button type="button" class="btn btn-outline btn-icon" id="remove-vehicle-btn" title="Remove last EV">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M5 12h14"/></svg>
+                    <span class="sr-only">Remove last EV</span>
+                  </button>
+                  <button type="button" class="btn btn-outline btn-icon" id="reset-btn" title="Reset simulation">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                    <span class="sr-only">Reset simulation</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div id="env-footer"></div>
+        </section>
+
+        <!-- ══ VEHICLES VIEW ═══════════════════════════════════════════ -->
+        <section class="view-section" id="view-vehicles">
+          <div class="metrics" id="vehicles-metrics"></div>
+          <div class="row">
+            <section class="panel-strong" style="display: flex; flex-direction: column; overflow: hidden">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Priority queue</p>
+                    <h2>Active Vehicles</h2>
+                  </div>
+                </div>
+                <span class="action primary" id="queue-count-2"></span>
+              </div>
+              <div class="queue-list" id="vehicle-queue-2"></div>
+            </section>
+          </div>
+          <div class="row">
+            <section class="panel">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Full specification</p>
+                    <h2>Fleet Technical Sheet</h2>
+                  </div>
+                </div>
+                <span class="action" id="sheet-count"></span>
+              </div>
+              <div class="sheet-wrap">
+                <table class="sheet">
+                  <thead>
+                    <tr>
+                      <th>ID</th><th>Battery</th><th>Target</th><th>Pack</th>
+                      <th>Max rate</th><th>Departs</th><th>Granted</th><th>ETA</th>
+                    </tr>
+                  </thead>
+                  <tbody id="fleet-sheet"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ══ ENERGY VIEW ═════════════════════════════════════════════ -->
+        <section class="view-section" id="view-energy">
+          <div class="grid-energy row" style="margin-top: 0">
+            <section class="panel">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Node balance</p>
+                    <h2>Grid Import Ledger</h2>
+                  </div>
+                </div>
+                <span class="action primary" id="ledger-load"></span>
+              </div>
+              <div id="ledger"></div>
+            </section>
+            <section class="panel-strong">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Live window</p>
+                    <h2>Demand Trace</h2>
+                  </div>
+                </div>
+                <span class="action">kW</span>
+              </div>
+              <div class="trace-grid" id="demand-trace"></div>
+            </section>
+          </div>
+          <div id="env-footer-2"></div>
+        </section>
+
+        <!-- ══ ANALYTICS VIEW ══════════════════════════════════════════ -->
+        <section class="view-section" id="view-analytics">
+          <div class="metrics" id="analytics-metrics"></div>
+          <div class="row grid-2-even">
+            <section class="panel">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Decision engine</p>
+                    <h2>Priority Distribution</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="dist-list" id="priority-dist"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a1.07 1.07 0 0 1 .691-1.265l13.504-4.44"/><path d="m13.56 11.747 4.332-.924"/><path d="M16 21a3 3 0 0 0 3-3v-4.219a2 2 0 0 0-1.585-1.958l-.711-.148a2 2 0 0 1-1.564-2.012l.05-1.71a2 2 0 0 0-2.158-2.063l-.317.024a2 2 0 0 0-1.845 1.964l-.044.895"/><path d="M16 21h3a3 3 0 0 0 3-3v-2a2 2 0 0 0-2-2h-1.343"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Quality of service</p>
+                    <h2>Efficiency Indicators</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="indicator-grid" id="efficiency"></div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ══ SETTINGS VIEW ═══════════════════════════════════════════ -->
+        <section class="view-section" id="view-settings">
+          <div class="grid-settings" style="margin-top: 0">
+            <section class="panel">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">Simulation</p>
+                    <h2>Grid Controls</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="controls-body">
+                <div>
+                  <p class="control-label" style="margin-bottom: 0.5rem">Scenario preset</p>
+                  <div class="preset-cards" id="preset-cards"></div>
+                </div>
+                <div id="controls-2"></div>
+                <button type="button" class="reset-btn" id="reset-btn-2">Reset simulation to defaults</button>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel-title">
+                <div class="left">
+                  <span class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+                  <div>
+                    <p class="eyebrow-line">How decisions are made</p>
+                    <h2>Allocator Reference</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="reference" id="allocator-ref"></div>
+            </section>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Add-vehicle dialog -->
+    <div class="dialog-overlay" id="vehicle-dialog">
+      <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="vd-title">
+        <h3 id="vd-title">Connect Vehicle</h3>
+        <p class="dialog-desc">Add an EV to the charging cluster. It joins the priority queue immediately.</p>
+        <div class="form-grid">
+          <label class="form-field">ID<input class="input" id="vf-id" maxlength="16" /></label>
+          <label class="form-field">Departure<input class="input" id="vf-departure" type="time" value="13:30" /></label>
+          <label class="form-field">Battery (%)<input class="input" id="vf-battery" type="number" min="1" max="99" value="25" /></label>
+          <label class="form-field">Target (%)<input class="input" id="vf-target" type="number" min="1" max="100" value="80" /></label>
+          <label class="form-field">Max power (kW)<input class="input" id="vf-maxpower" type="number" min="1" max="22" value="7" /></label>
+          <label class="form-field">Pack (kWh)<input class="input" id="vf-pack" type="number" min="20" max="200" value="60" /></label>
+        </div>
+        <p class="form-error" id="vf-error"></p>
+        <div class="dialog-footer">
+          <button type="button" class="btn btn-outline" id="vf-cancel">Cancel</button>
+          <button type="button" class="btn btn-default" id="vf-save">Add vehicle</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
